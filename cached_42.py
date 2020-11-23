@@ -9,7 +9,7 @@ STORAGE = "out/cached/"
 
 class Cached42:
 
-    def __init__(self, params, name="", ignore_args=[]):
+    def __init__(self, params, name=None, ignore_args=[]):
         
         self.caching_params = copy.copy(params)
         self.name = name
@@ -25,8 +25,15 @@ class Cached42:
         # Create storage dir if doesn't exist
         self.storage.mkdir(exist_ok=True, parents=True)
 
-        filename = f"{self.name}_{self._hash}.cached"
-        path = self.storage / filename
+        filename = f"{self._hash}.cached"
+
+        if self.name is not None:
+            task_dir = self.storage / f"{self.name}"
+            task_dir.mkdir(exist_ok=True, parents=True)
+
+            path = task_dir / filename
+        else:
+            path = self.storage / filename
 
         return path
         
