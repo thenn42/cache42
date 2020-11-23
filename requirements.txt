@@ -1,0 +1,6 @@
+# For lib
+
+# For testing
+numpy
+pudb
+ipython
