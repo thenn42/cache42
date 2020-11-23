@@ -57,7 +57,7 @@ class CachedObjectEncoder(json.JSONEncoder):
             return o._hash
         return super(CachedObjectEncoder, self).default(o)
 
-def cache_42(ignore_args=[]):
+def cache_42(ignore_args=[], force_recompute=False):
 
     def cache_42_built_decorator(func):
         
@@ -75,7 +75,7 @@ def cache_42(ignore_args=[]):
             
             cached_res = Cached42(caching_params, name=func.__name__, ignore_args=ignore_args)
 
-            if cached_res.exists():
+            if cached_res.exists() and not force_recompute:
                 print(f"{func.__name__} was cached, skipping...")
                 return cached_res
             else:
