@@ -79,7 +79,8 @@ def cache_42(ignore_args=[], force_recompute=False):
                 print(f"{func.__name__} was cached, skipping...")
                 return cached_res
             else:
-                return func(*args, **kwargs, cache=cached_res)
+                func(*args, **kwargs, cache=cached_res)
+                return cached_res
         
         return wrapping
 
