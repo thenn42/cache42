@@ -1,4 +1,7 @@
+""" This is a very simple caching decorator for pipelines of long running tasks with many parameters.
 
+Created by Thomas Henn.
+"""
 import json
 import hashlib
 from pathlib import Path
